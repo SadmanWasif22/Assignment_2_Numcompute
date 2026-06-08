@@ -5,15 +5,15 @@ io.py
 
 Custom input/output utilities for the NumCompute streaming assignment.
 
-This module avoids pandas and scikit-learn. It uses only:
-- plain Python
-- NumPy
+I did not use pandas and scikit-learn in this module. I have used plain python and Numpy.
 
-Main features:
-- load CSV files
-- split data into train/test sets
-- split arrays into chunks for streaming learning
-- validate input shapes
+
+Main features of this module are given below:
+- loading CSV files
+- spliting data into train/test sets
+- spliting arrays into chunks for streaming learning
+- validating input shapes
+These works were done here. 
 """
 
 from __future__ import annotations

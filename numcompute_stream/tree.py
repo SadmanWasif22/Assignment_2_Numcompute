@@ -1,13 +1,12 @@
 """
 tree.py
 
-Decision tree classifier for NumCompute Stream.
+This is Decision tree classifier for NumCompute Stream.
 
-Allowed libraries:
-- Python standard library
-- NumPy
+I used Numpy and Python standard library in tree.py
 
-This implementation supports:
+
+This module supports: 
 - Gini or entropy splitting
 - max_depth
 - min_samples_split

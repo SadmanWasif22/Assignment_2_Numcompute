@@ -1,11 +1,12 @@
 """
 NumCompute Stream
 
-A lightweight streaming machine learning framework built using only
+Here, I have built a lightweight streaming machine learning framework by using only
 plain Python, NumPy, and matplotlib.
 
 This package supports:
-- CSV loading and chunk creation
+- CSV loading
+-chunk creation
 - streaming statistics
 - streaming preprocessing
 - decision tree classification
@@ -21,7 +22,7 @@ __version__ = "0.1.0"
 # I/O utilities
 from .io import load_csv, train_test_split, make_chunks
 
-# Streaming statistics
+# for Streaming statistics
 from .stats import StreamingStats
 
 # Streaming metrics
@@ -71,15 +72,15 @@ __all__ = [
     "StandardScaler",
     "OneHotEncoder",
 
-    # tree.py
+    # for tree.py
     "DecisionTreeClassifier",
 
-    # ensemble.py
+    # for ensemble.py
     "EnsembleClassifier",
 
-    # pipeline.py
+    # for pipeline.py
     "Pipeline",
 
-    # stream.py
+    # for stream.py
     "StreamTrainer",
 ]

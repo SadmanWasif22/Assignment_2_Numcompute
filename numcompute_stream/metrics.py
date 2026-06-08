@@ -1,19 +1,13 @@
 """
 metrics.py
 
-Streaming classification metrics for NumCompute Stream.
+It is Streaming classification metrics for NumCompute Stream.
 
-Allowed libraries:
-- Python standard library
-- NumPy
+I have used Numpy and Standard Python library. 
 
-This module supports:
-- Accuracy
-- Precision
-- Recall
-- F1 score
-- Confusion matrix
-- Rolling window accuracy
+This module is important as it supports accuracy, precision, Recall, F1 score, Confusion Matrix
+and rolling window accuracy.
+
 """
 
 from __future__ import annotations

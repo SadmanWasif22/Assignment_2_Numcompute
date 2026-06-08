@@ -4,9 +4,9 @@ visualise.py
 
 Reusable plotting utilities for NumCompute Stream.
 
-Allowed libraries:
-- matplotlib
-- NumPy
+
+ matplotlib and Numpy were used here. 
+
 
 Required assignment plots:
 - plot_metric_over_time(metric_values, title, ylabel)

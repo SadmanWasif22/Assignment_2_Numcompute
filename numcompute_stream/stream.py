@@ -4,19 +4,14 @@ stream.py
 
 Streaming training utilities for the NumCompute Stream assignment.
 
-This module manages chunk-wise learning, prediction, metric updates,
+This module is being used for managing chunk-wise learning, prediction, metric updates,
 and simple logging for streaming machine learning experiments.
 
-Allowed libraries:
-- Python standard library
-- NumPy
 
-Not allowed:
-- pandas
-- scikit-learn
-- scipy
-- PyTorch
-- TensorFlow
+ Python standard library and Numpy were used here.
+
+
+
 """
 
 from __future__ import annotations

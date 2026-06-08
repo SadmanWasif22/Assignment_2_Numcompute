@@ -1,24 +1,24 @@
 
 # NumCompute Stream
 
-NumCompute Stream is a streaming decision tree–based machine learning framework built using plain Python, NumPy, and matplotlib. It extends the original NumCompute package by adding support for incremental learning, decision tree classification, ensemble learning, streaming metrics, preprocessing, benchmarking, and visualisation.
+NumCompute Stream is a streaming decision tree–based machine learning framework. It was built and developed by using plain Python, NumPy, and matplotlib. It extends the original NumCompute package by adding support for incremental learning, decision tree classification, ensemble learning, streaming metrics, preprocessing, benchmarking, and visualisation.
 
-This project was developed for the Programming for AI assignment. External machine learning and data processing libraries such as pandas, scikit-learn, PyTorch, and TensorFlow are not used.
+I have developed this project for the Programming for AI assignment.I did not use external machine learning and data processing libraries such as pandas, scikit-learn, PyTorch, and TensorFlow.
 
 ## Features
 
-* Custom CSV loading using `io.py`
-* Train/test splitting and streaming chunk creation
-* Streaming-compatible preprocessing using `.partial_fit()`
-* Decision tree classifier implemented from scratch
-* Bagging/random forest style ensemble classifier
-* Pipeline system for preprocessing and model training
-* Streaming trainer for chunk-wise learning and logging
-* Accuracy, precision, recall, F1 score, rolling accuracy, and confusion matrix metrics
-* Streaming statistics including mean, variance, min, max, histogram, and quantile support
-* Built-in matplotlib visualisation functions
-* Unit tests covering normal cases and edge cases
-* Benchmarks for model comparison and vectorised computation
+ Custom CSV loading using `io.py`
+ Train/test splitting and streaming chunk creation
+ Streaming-compatible preprocessing using `.partial_fit()`
+ Decision tree classifier implemented from scratch
+ Bagging/random forest style ensemble classifier
+ Pipeline system for preprocessing and model training
+ Streaming trainer for chunk-wise learning and logging
+ Accuracy, precision, recall, F1 score, rolling accuracy, and confusion matrix metrics
+ Streaming statistics including mean, variance, min, max, histogram, and quantile support
+ Built-in matplotlib visualisation functions
+ Unit tests covering normal cases and edge cases
+ Benchmarks for model comparison and vectorised computation
 
 ## Project Structure
 
@@ -62,17 +62,17 @@ Assignment_2_Numcompute/
 
 ## Requirements
 
-The project uses only the permitted libraries:
+My project uses only the permitted libraries:
 
-* Python
-* NumPy
-* matplotlib
+ Python
+ NumPy
+ matplotlib
 
-For testing and running the notebook demo, the project also uses:
+For testing and running the notebook demo, my project also uses:
 
-* pytest
-* notebook
-* ipykernel
+ pytest
+ notebook
+ ipykernel
 
 Install requirements with:
 
@@ -142,11 +142,11 @@ The demo performs the following steps:
 
 ## Running Benchmarks
 
-The `benchmark/` folder contains two benchmark scripts.
+Here, The `benchmark/` folder contains two benchmark scripts.
 
 ### Model Benchmark
 
-This compares a single decision tree with a bagging ensemble under streaming conditions.
+It compares a single decision tree with a bagging ensemble under streaming conditions.
 
 Run:
 
@@ -162,10 +162,10 @@ On Windows PowerShell:
 
 This benchmark reports:
 
-* Model name
-* Accuracy
-* Training time
-* Prediction time
+ Model name
+ Accuracy
+ Training time
+ Prediction time
 
 ### Vectorisation Benchmark
 
@@ -185,9 +185,9 @@ On Windows PowerShell:
 
 This benchmark reports:
 
-* Python loop time
-* NumPy vectorised time
-* Correctness checks
+ Python loop time
+ NumPy vectorised time
+ Correctness checks
 
 ## Example Usage
 
@@ -235,53 +235,53 @@ Includes streaming-compatible preprocessing classes:
 
 ### `tree.py`
 
-Implements a decision tree classifier from scratch using Gini impurity or entropy.
+It implements a decision tree classifier from scratch using Gini impurity or entropy.
 
 ### `ensemble.py`
 
-Implements a bagging/random forest style ensemble classifier using multiple decision trees and majority voting.
+It implements a bagging/random forest style ensemble classifier using multiple decision trees and majority voting.
 
 ### `pipeline.py`
 
-Connects preprocessing steps and the model into one consistent workflow.
+It was built to connect preprocessing steps and the model into one consistent workflow.
 
 ### `stream.py`
 
-Provides `StreamTrainer` for chunk-wise model training, metric updates, and logging.
+It provides `StreamTrainer` for chunk-wise model training, metric updates, and logging.
 
 ### `metrics.py`
 
-Provides classification metrics including accuracy, precision, recall, F1 score, rolling accuracy, and confusion matrix.
+It provides classification metrics including accuracy, precision, recall, F1 score, rolling accuracy, and confusion matrix.
 
 ### `stats.py`
 
-Provides streaming statistics including mean, variance, standard deviation, min, max, quantiles, and histograms.
+It provides streaming statistics including mean, variance, standard deviation, min, max, quantiles, and histograms.
 
 ### `visualise.py`
 
-Provides matplotlib plots for:
+It provides matplotlib plots for:
 
-* Metric history over time
-* Model comparison
-* Error over time
-* Predictions vs ground truth
-* Confusion matrix
+ Metric history over time
+ Model comparison
+ Error over time
+ Predictions vs ground truth
+ Confusion matrix
 
 ## Assignment Requirements Covered
 
-This project covers the required assignment components:
+This project has covered the required assignment components:
 
-* Streaming learning through `.partial_fit()` and `.update()` methods
-* Decision tree classifier implemented from scratch
-* Ensemble model using multiple decision trees
-* Custom preprocessing, statistics, and metrics
-* Built-in visualisation using matplotlib
-* NumPy vectorised operations
-* Numerical stability for NaNs, zero variance, and invalid inputs
-* At least 30 unit tests
-* Benchmark comparison for base model vs ensemble model
-* Benchmark comparison for loop vs vectorised operations
-* Demo notebook showing pipeline usage, logs, visualisations, and predictions
+ Streaming learning through `.partial_fit()` and `.update()` methods
+ Decision tree classifier implemented from scratch
+ Ensemble model using multiple decision trees
+ Custom preprocessing, statistics, and metrics
+ Built-in visualisation using matplotlib
+ NumPy vectorised operations
+ Numerical stability for NaNs, zero variance, and invalid inputs
+ At least 30 unit tests
+ Benchmark comparison for base model vs ensemble model
+ Benchmark comparison for loop vs vectorised operations
+ Demo notebook showing pipeline usage, logs, visualisations, and predictions
 
 ## Notes
 
@@ -289,6 +289,6 @@ The current `.partial_fit()` implementation stores previously seen chunks and re
 
 ## Author
 
-Sadman Sami
+Mohammad Sadman Wasif
 Master of Artificial Intelligence and Machine Learning
-University of Adelaide
+Adelaide University

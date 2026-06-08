@@ -25,28 +25,15 @@ import numpy as np
 
 class StreamingStats:
     """
-    Streaming statistics for 2D numeric data.
+    It is Streaming statistics for 2D numeric data.
 
-    Parameters
-    ----------
-    store_values : bool, default=True
-        If True, stores seen values for approximate quantiles.
-        If False, quantile() will raise an error.
-
-    histogram_bins : int, default=10
-        Number of bins used for histogram calculation.
-
-    Notes
-    -----
-    X must have shape:
-    (n_samples, n_features)
-
-    This class ignores NaN values when updating statistics.
+   
+    This class will ignore NaN values when updating statistics.
     """
 
     def __init__(self, store_values: bool = True, histogram_bins: int = 10) -> None:
         if histogram_bins <= 0:
-            raise ValueError("histogram_bins must be greater than 0.")
+            raise ValueError("Here, histogram_bins should be greater than 0.")
 
         self.store_values = store_values
         self.histogram_bins = histogram_bins
@@ -70,16 +57,9 @@ class StreamingStats:
 
     def update_stats(self, X_chunk: np.ndarray) -> "StreamingStats":
         """
-        Update statistics using one data chunk.
+       It will update statistics using one data chunk.
 
-        Parameters
-        ----------
-        X_chunk : np.ndarray
-            Data chunk with shape (n_samples, n_features).
-
-        Returns
-        -------
-        self : StreamingStats
+        
         """
 
         X_chunk = self._validate_X(X_chunk)
@@ -139,7 +119,7 @@ class StreamingStats:
         chunk_M2: np.ndarray,
     ) -> None:
         """
-        Merge current statistics with chunk statistics using Welford-style update.
+       it will merge current statistics with chunk statistics using Welford-style update.
         """
 
         old_count = self.count_
@@ -183,14 +163,9 @@ class StreamingStats:
 
     def variance(self, ddof: int = 0) -> np.ndarray:
         """
-        Return running variance for each feature.
+       It returns running variance for each feature.
 
-        Parameters
-        ----------
-        ddof : int, default=0
-            Delta degrees of freedom.
-            Use ddof=0 for population variance.
-            Use ddof=1 for sample variance.
+        
         """
 
         self._check_fitted()
@@ -232,16 +207,9 @@ class StreamingStats:
 
     def quantile(self, q: float) -> np.ndarray:
         """
-        Return approximate quantile for each feature.
+        It returns approximate quantile for each feature.
 
-        Parameters
-        ----------
-        q : float
-            Quantile between 0 and 1.
-
-        Notes
-        -----
-        This uses stored values, so store_values must be True.
+        
         """
 
         self._check_fitted()
@@ -259,13 +227,9 @@ class StreamingStats:
 
     def histogram(self) -> Dict[int, tuple[np.ndarray, np.ndarray]]:
         """
-        Return histogram counts and bin edges for each feature.
+       It returns histogram counts and bin edges for each feature.
 
-        Returns
-        -------
-        histograms : dict
-            Dictionary where each key is a feature index.
-            Each value is (counts, bin_edges).
+        
         """
 
         self._check_fitted()
@@ -297,7 +261,7 @@ class StreamingStats:
 
     def result(self) -> Dict[str, np.ndarray]:
         """
-        Return all main statistics in a dictionary.
+        Returning all main statistics in a dictionary.
         """
 
         self._check_fitted()
@@ -313,7 +277,7 @@ class StreamingStats:
 
     def _initialise(self, n_features: int) -> None:
         """
-        Initialise arrays after seeing the first chunk.
+        going to initialise arrays after seeing the first chunk
         """
 
         self.n_features_ = n_features
@@ -325,7 +289,7 @@ class StreamingStats:
 
     def _check_fitted(self) -> None:
         """
-        Check whether update_stats() has been called.
+        Checking whether update_stats() has been called.
         """
 
         if self.n_features_ is None:
@@ -334,21 +298,21 @@ class StreamingStats:
     @staticmethod
     def _validate_X(X: np.ndarray) -> np.ndarray:
         """
-        Validate input X.
+       I am going to validate input X here.
         """
 
         X = np.asarray(X, dtype=float)
 
         if X.ndim != 2:
             raise ValueError(
-                "X_chunk must be a 2D array with shape "
+                "X_chunk should be a 2D array with shape "
                 "(n_samples, n_features)."
             )
 
         if X.shape[0] == 0:
-            raise ValueError("X_chunk must contain at least one sample.")
+            raise ValueError("Here, X_chunk should contain at least one sample.")
 
         if X.shape[1] == 0:
-            raise ValueError("X_chunk must contain at least one feature.")
+            raise ValueError(" At least one feature should be contained by X_chunk.")
 
         return X

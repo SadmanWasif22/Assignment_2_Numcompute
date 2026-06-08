@@ -1,18 +1,16 @@
 """
 preprocessing.py
 
-Streaming preprocessing utilities for NumCompute Stream.
+It is Streaming preprocessing utilities for NumCompute Stream.
 
-Allowed libraries:
-- Python standard library
-- NumPy
 
-This module provides:
-- SimpleImputer
-- StandardScaler
-- OneHotEncoder
+ Python standard library and Numpy were used here.
 
-Each class supports streaming-compatible partial_fit().
+
+This module provides: SimpleImputer, StandardScaler and  OneHotEncoder
+
+
+In this module, each class supports streaming-compatible partial_fit().
 """
 
 from __future__ import annotations
@@ -170,7 +168,7 @@ class SimpleImputer:
 
     def _initialise(self, n_features: int) -> None:
         """
-        Initialise arrays.
+        Going to Initialise arrays
         """
 
         self.n_features_ = n_features
@@ -180,7 +178,7 @@ class SimpleImputer:
 
     def _check_fitted(self) -> None:
         """
-        Check if imputer has been fitted.
+        Going to check if imputer has been fitted.
         """
 
         if self.statistics_ is None:
@@ -189,7 +187,7 @@ class SimpleImputer:
     @staticmethod
     def _validate_X(X: np.ndarray) -> np.ndarray:
         """
-        Validate input feature matrix.
+        I am validating input feature matrix.
         """
 
         X = np.asarray(X, dtype=float)
@@ -208,17 +206,14 @@ class SimpleImputer:
 
 class StandardScaler:
     """
-    Streaming standard scaler.
+    This is Streaming standard scaler.
 
-    Standardisation formula:
+    Formula of Standardisation is given below:
     X_scaled = (X - mean) / standard_deviation
 
-    This class updates running mean and variance chunk by chunk.
+    This class is being used to update running mean and variance chunk by chunk.
 
-    Notes
-    -----
-    Zero-variance columns are safely handled by using scale=1.0.
-    NaN values are ignored during partial_fit().
+   
     """
 
     def __init__(self) -> None:
@@ -238,7 +233,7 @@ class StandardScaler:
 
     def partial_fit(self, X: np.ndarray) -> "StandardScaler":
         """
-        Update running mean and variance from one chunk.
+       It is going to Update running mean and variance from one chunk.
 
         Parameters
         ----------
@@ -283,7 +278,7 @@ class StandardScaler:
 
     def fit(self, X: np.ndarray) -> "StandardScaler":
         """
-        Fit scaler from scratch.
+       It is working to fit scaler from scratch.
         """
 
         self.reset()
@@ -321,7 +316,7 @@ class StandardScaler:
 
     def inverse_transform(self, X_scaled: np.ndarray) -> np.ndarray:
         """
-        Convert scaled values back to original scale.
+        I am converting scaled values back to original scale here
         """
 
         self._check_fitted()
@@ -342,7 +337,7 @@ class StandardScaler:
         chunk_M2: np.ndarray,
     ) -> None:
         """
-        Merge current running statistics with chunk statistics.
+       It is being used to merge current running statistics with chunk statistics.
         """
 
         old_count = self.count_
@@ -378,7 +373,7 @@ class StandardScaler:
 
     def _update_variance_and_scale(self) -> None:
         """
-        Update variance and scale arrays.
+        It is being done to update variance and scale arrays.
         """
 
         self.var_ = np.divide(
@@ -395,7 +390,7 @@ class StandardScaler:
 
     def _initialise(self, n_features: int) -> None:
         """
-        Initialise scaler arrays.
+        It is being done to initialise scaler arrays.
         """
 
         self.n_features_ = n_features
@@ -407,7 +402,7 @@ class StandardScaler:
 
     def _check_fitted(self) -> None:
         """
-        Check whether scaler has been fitted.
+         Going to check whether scaler has been fitted here.
         """
 
         if self.mean_ is None or self.scale_ is None:
@@ -435,15 +430,9 @@ class StandardScaler:
 
 class OneHotEncoder:
     """
-    Streaming one-hot encoder for categorical integer/string values.
+    This is Streaming one-hot encoder for categorical integer/string values.
 
-    Notes
-    -----
-    This class can expand categories incrementally as new chunks arrive.
-    It is useful for simple categorical data.
-
-    Output shape:
-    (n_samples, total_number_of_categories_seen)
+    
     """
 
     def __init__(self, handle_unknown: str = "ignore") -> None:

@@ -2,20 +2,18 @@
 """
 pipeline.py
 
-A simple streaming pipeline for NumCompute Stream.
+It is a simple streaming pipeline for NumCompute Stream.
 
-Allowed libraries:
-- Python standard library
-- NumPy
+
+ Python standard library and Numpy were used here.
+
 
 This pipeline connects preprocessing steps and a final model.
 
-Each transformer should support:
-- partial_fit(X)
-- transform(X)
-- fit_transform(X)
+Each transformer must support: partial_fit(X),  transform(X) and  fit_transform(X) 
 
-The final model should support:
+
+The final model must support:  partial_fit(X, y) and  predict(X)
 - partial_fit(X, y)
 - predict(X)
 """
@@ -61,19 +59,17 @@ class Pipeline:
 
     def partial_fit(self, X: np.ndarray, y: np.ndarray) -> "Pipeline":
         """
-        Incrementally fit transformers and model using one chunk.
+        Here, Incrementally fit transformers and model using one chunk.
 
-        Parameters
-        ----------
-        X : np.ndarray
+        Parameters are: X : np.ndarray
             Feature chunk with shape (n_samples, n_features).
 
-        y : np.ndarray
+         y : np.ndarray
             Target chunk with shape (n_samples,).
 
-        Returns
-        -------
-        self : Pipeline
+        
+       
+       
         """
 
         X, y = self._validate_X_y(X, y)
@@ -107,10 +103,10 @@ class Pipeline:
 
     def fit(self, X: np.ndarray, y: np.ndarray) -> "Pipeline":
         """
-        Fit pipeline from scratch.
+        I will fit pipeline from scratch.
 
-        If a step has fit_transform(), it will be used.
-        Otherwise fit()/transform() will be used.
+        If a step has fit_transform(), I will use that.
+        Otherwise, I will use fit()/transform().
         """
 
         X, y = self._validate_X_y(X, y)
@@ -185,9 +181,9 @@ class Pipeline:
 
     def transform(self, X: np.ndarray) -> np.ndarray:
         """
-        Apply all transformer steps to X.
+        going to apply all transformer steps to X.
 
-        The final model step is not used.
+        
         """
 
         X = self._validate_X(X)
@@ -212,7 +208,7 @@ class Pipeline:
 
     def get_step(self, name: str) -> Any:
         """
-        Return a pipeline step by name.
+       Here, it will return a pipeline step by name.
         """
 
         for step_name, step in self.steps:
@@ -223,7 +219,7 @@ class Pipeline:
 
     def set_step(self, name: str, new_step: Any) -> "Pipeline":
         """
-        Replace a pipeline step by name.
+       it is going to replace a pipeline step by name.
         """
 
         for index, (step_name, _) in enumerate(self.steps):
@@ -236,7 +232,7 @@ class Pipeline:
 
     def _validate_steps(self) -> None:
         """
-        Validate pipeline step format and names.
+        Validating pipeline step format and names.
         """
 
         names = []
@@ -248,10 +244,10 @@ class Pipeline:
             name, obj = step
 
             if not isinstance(name, str):
-                raise TypeError("Pipeline step names must be strings.")
+                raise TypeError("Pipeline step names should be strings.")
 
             if name == "":
-                raise ValueError("Pipeline step names cannot be empty.")
+                raise ValueError("It is not possible for Pipeline step names to be empty.")
 
             if obj is None:
                 raise ValueError(f"Pipeline step '{name}' cannot be None.")
@@ -264,21 +260,21 @@ class Pipeline:
     @staticmethod
     def _validate_X(X: np.ndarray) -> np.ndarray:
         """
-        Validate feature matrix X.
+        Validating feature matrix X.
         """
 
         X = np.asarray(X, dtype=float)
 
         if X.ndim != 2:
             raise ValueError(
-                "X must be a 2D array with shape (n_samples, n_features)."
+                "X should be a 2D array with shape (n_samples, n_features)."
             )
 
         if X.shape[0] == 0:
-            raise ValueError("X must contain at least one sample.")
+            raise ValueError(" At least one sample should be contained by X.")
 
         if X.shape[1] == 0:
-            raise ValueError("X must contain at least one feature.")
+            raise ValueError("X should contain at least one feature.")
 
         return X
 
@@ -291,17 +287,17 @@ class Pipeline:
         y = np.asarray(y)
 
         if y.ndim != 1:
-            raise ValueError("y must be a 1D array with shape (n_samples,).")
+            raise ValueError("y should be a 1D array with shape (n_samples,).")
 
         if y.shape[0] == 0:
-            raise ValueError("y must contain at least one sample.")
+            raise ValueError(" At least one sample should be contained by y.")
 
         return y
 
     @classmethod
     def _validate_X_y(cls, X: np.ndarray, y: np.ndarray):
         """
-        Validate X and y together.
+        it will validate X and y together.
         """
 
         X = cls._validate_X(X)
@@ -309,7 +305,7 @@ class Pipeline:
 
         if X.shape[0] != y.shape[0]:
             raise ValueError(
-                "X and y must contain the same number of samples. "
+                "X and y should contain the same number of samples. "
                 f"Got X={X.shape[0]} and y={y.shape[0]}."
             )
 

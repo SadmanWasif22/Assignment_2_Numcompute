@@ -1,18 +1,11 @@
 """
 ensemble.py
 
-Tree-based ensemble classifier for NumCompute Stream.
+ This is Tree-based ensemble classifier for NumCompute Stream.
 
-Allowed libraries:
-- Python standard library
-- NumPy
+Allowed libraries here are numpy and standard python libraries. I have used them.
 
-This implementation uses Bagging / Random Forest style training:
-- multiple decision trees
-- bootstrap sampling
-- random feature selection through max_features
-- majority voting
-- streaming-compatible partial_fit()
+
 """
 
 from __future__ import annotations
