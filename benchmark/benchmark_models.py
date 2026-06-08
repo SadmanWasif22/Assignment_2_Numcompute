@@ -3,7 +3,7 @@ benchmark_models.py
 
 Benchmark single decision tree vs ensemble model under streaming conditions.
 
-Run from project root:
+
 python benchmark/benchmark_models.py
 """
 

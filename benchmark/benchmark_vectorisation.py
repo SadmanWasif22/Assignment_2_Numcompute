@@ -3,7 +3,7 @@ benchmark_vectorisation.py
 
 Benchmark Python loop vs NumPy vectorised calculation.
 
-Run from project root:
+
 python benchmark/benchmark_vectorisation.py
 """
 
