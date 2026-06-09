@@ -16,7 +16,7 @@ import numpy as np
 
 def loop_column_mean(X: np.ndarray) -> list[float]:
     """
-    Calculate column means using Python loops.
+    Calculating column means using Python loops.
     """
 
     n_samples = X.shape[0]
@@ -79,7 +79,7 @@ def time_function(function, *args) -> tuple[object, float]:
 
 def main() -> None:
     """
-    Run vectorisation benchmark.
+    Running vectorisation benchmark.
     """
 
     rng = np.random.default_rng(42)

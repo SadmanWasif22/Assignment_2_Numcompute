@@ -21,33 +21,8 @@ class EnsembleClassifier:
     """
     Bagging / Random Forest style classifier using multiple decision trees.
 
-    Parameters
-    ----------
-    n_estimators : int, default=5
-        Number of decision trees.
 
-    max_depth : int, default=5
-        Maximum depth of each tree.
 
-    min_samples_split : int, default=2
-        Minimum number of samples required to split each tree node.
-
-    criterion : {"gini", "entropy"}, default="gini"
-        Split criterion used by each tree.
-
-    max_features : int, float, {"sqrt", "log2"} or None, default="sqrt"
-        Number of features considered at each split.
-
-    bootstrap : bool, default=True
-        Whether each tree trains on a bootstrap sample.
-
-    random_state : int or None, default=None
-        Random seed for reproducibility.
-
-    Notes
-    -----
-    partial_fit() appends each incoming chunk to all previously seen data
-    and retrains the ensemble. This is simple and streaming-compatible.
     """
 
     def __init__(
@@ -122,17 +97,7 @@ class EnsembleClassifier:
         """
         Incrementally update the ensemble with a new chunk.
 
-        Parameters
-        ----------
-        X_chunk : np.ndarray
-            Feature chunk with shape (n_samples, n_features).
-
-        y_chunk : np.ndarray
-            Target chunk with shape (n_samples,).
-
-        Returns
-        -------
-        self : EnsembleClassifier
+      
         """
 
         X_chunk, y_chunk = self._validate_X_y(X_chunk, y_chunk)
@@ -157,17 +122,9 @@ class EnsembleClassifier:
 
     def predict(self, X: np.ndarray) -> np.ndarray:
         """
-        Predict labels using majority voting.
+        Predicts labels using majority voting.
 
-        Parameters
-        ----------
-        X : np.ndarray
-            Feature matrix with shape (n_samples, n_features).
-
-        Returns
-        -------
-        y_pred : np.ndarray
-            Predicted labels with shape (n_samples,).
+        
         """
 
         self._check_fitted()
@@ -184,17 +141,9 @@ class EnsembleClassifier:
 
     def predict_proba(self, X: np.ndarray) -> np.ndarray:
         """
-        Estimate class probabilities from tree votes.
+        Estimates class probabilities from tree votes.
 
-        Parameters
-        ----------
-        X : np.ndarray
-            Feature matrix with shape (n_samples, n_features).
-
-        Returns
-        -------
-        probabilities : np.ndarray
-            Array with shape (n_samples, n_classes).
+       
         """
 
         self._check_fitted()
@@ -258,15 +207,8 @@ class EnsembleClassifier:
         """
         Majority vote across trees.
 
-        Parameters
-        ----------
-        all_predictions : np.ndarray
-            Shape (n_estimators, n_samples)
-
-        Returns
-        -------
-        final_predictions : np.ndarray
-            Shape (n_samples,)
+      
+        
         """
 
         if all_predictions.ndim != 2:

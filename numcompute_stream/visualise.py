@@ -161,33 +161,8 @@ def plot_predictions_vs_ground_truth(
     """
     Plot predicted labels and true labels for the latest chunk.
 
-    Parameters
-    ----------
-    y_true : sequence
-        True target labels.
+  
 
-    y_pred : sequence
-        Predicted target labels.
-
-    title : str, default="Predictions vs ground truth"
-        Plot title.
-
-    xlabel : str, default="Sample index"
-        X-axis label.
-
-    ylabel : str, default="Class label"
-        Y-axis label.
-
-    save_path : str or None, default=None
-        If provided, save the plot to this path.
-
-    show : bool, default=True
-        Whether to display the plot.
-
-    Returns
-    -------
-    fig, ax
-        Matplotlib figure and axis.
     """
 
     y_true = np.asarray(y_true)
@@ -263,13 +238,7 @@ def plot_confusion_matrix(
     """
     Plot a confusion matrix using matplotlib.
 
-    Parameters
-    ----------
-    matrix : np.ndarray
-        Square confusion matrix.
-
-    labels : sequence or None
-        Class labels.
+    
     """
 
     matrix = np.asarray(matrix)

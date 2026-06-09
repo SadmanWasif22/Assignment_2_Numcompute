@@ -23,9 +23,9 @@ def _validate_y_true_y_pred(
     y_pred: np.ndarray,
 ) -> tuple[np.ndarray, np.ndarray]:
     """
-    Validate y_true and y_pred.
+    Validating y_true and y_pred.
 
-    Both must be 1D arrays with the same length.
+    Both should be 1D arrays with the same length.
     """
 
     y_true = np.asarray(y_true)
@@ -92,17 +92,9 @@ class Accuracy:
 
 class ConfusionMatrix:
     """
-    Streaming confusion matrix.
+    it is Streaming confusion matrix.
 
-    Parameters
-    ----------
-    labels : array-like or None, default=None
-        Class labels. If None, labels are discovered as chunks arrive.
-
-    Notes
-    -----
-    Rows represent true classes.
-    Columns represent predicted classes.
+    
     """
 
     def __init__(self, labels: Optional[np.ndarray] = None) -> None:
@@ -115,7 +107,7 @@ class ConfusionMatrix:
         y_pred: np.ndarray,
     ) -> "ConfusionMatrix":
         """
-        Update confusion matrix using one chunk.
+        Updating confusion matrix using one chunk.
         """
 
         y_true, y_pred = _validate_y_true_y_pred(y_true, y_pred)
@@ -193,20 +185,8 @@ class Precision:
     """
     Streaming precision metric.
 
-    Supports:
-    - binary average
-    - macro average
-
-    Parameters
-    ----------
-    average : {"binary", "macro"}, default="binary"
-        Averaging method.
-
-    positive_label : int or float, default=1
-        Positive class for binary precision.
-
-    zero_division : float, default=0.0
-        Value returned when division by zero occurs.
+   
+    
     """
 
     def __init__(
@@ -283,8 +263,8 @@ class Recall:
     Streaming recall metric.
 
     Supports:
-    - binary average
-    - macro average
+     binary average
+     macro average
     """
 
     def __init__(
@@ -303,7 +283,7 @@ class Recall:
 
     def update(self, y_true: np.ndarray, y_pred: np.ndarray) -> "Recall":
         """
-        Update recall using one chunk.
+        Updating recall using one chunk.
         """
 
         self.cm.update(y_true, y_pred)
@@ -311,7 +291,7 @@ class Recall:
 
     def result(self) -> float:
         """
-        Return cumulative recall.
+        Returning cumulative recall.
         """
 
         matrix = self.cm.result()

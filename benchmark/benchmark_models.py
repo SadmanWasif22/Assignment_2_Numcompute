@@ -27,7 +27,7 @@ from numcompute_stream.pipeline import Pipeline
 
 def make_tree_pipeline() -> Pipeline:
     """
-    Create a single decision tree pipeline.
+    Creating a single decision tree pipeline.
     """
 
     return Pipeline([
@@ -44,7 +44,7 @@ def make_tree_pipeline() -> Pipeline:
 
 def make_ensemble_pipeline() -> Pipeline:
     """
-    Create a bagging ensemble pipeline.
+    Creating a bagging ensemble pipeline.
     """
 
     return Pipeline([
@@ -70,7 +70,7 @@ def run_streaming_benchmark(
     y_test: np.ndarray,
 ) -> dict:
     """
-    Train a pipeline chunk by chunk and measure accuracy/time.
+    Training a pipeline chunk by chunk and measure accuracy/time.
     """
 
     train_start = time.perf_counter()
@@ -98,7 +98,7 @@ def run_streaming_benchmark(
 
 def main() -> None:
     """
-    Run benchmark.
+    Running benchmark.
     """
 
     dataset_path = PROJECT_ROOT / "demo" / "sample_data.csv"

@@ -42,28 +42,8 @@ class DecisionTreeClassifier:
     """
     Depth-limited decision tree classifier.
 
-    Parameters
-    ----------
-    max_depth : int, default=5
-        Maximum depth of the tree.
+    
 
-    min_samples_split : int, default=2
-        Minimum number of samples required to split a node.
-
-    criterion : {"gini", "entropy"}, default="gini"
-        Split criterion.
-
-    max_features : int, float, {"sqrt", "log2"} or None, default=None
-        Number of features considered at each split.
-        If None, all features are considered.
-
-    random_state : int or None, default=None
-        Random seed for reproducibility.
-
-    Notes
-    -----
-    partial_fit() stores seen chunks and rebuilds the tree using all data seen so far.
-    This is a simple streaming-compatible approach suitable for this assignment.
     """
 
     def __init__(
@@ -102,17 +82,7 @@ class DecisionTreeClassifier:
         """
         Fit the decision tree from scratch.
 
-        Parameters
-        ----------
-        X : np.ndarray
-            Feature matrix with shape (n_samples, n_features).
-
-        y : np.ndarray
-            Target vector with shape (n_samples,).
-
-        Returns
-        -------
-        self : DecisionTreeClassifier
+       
         """
 
         X, y = self._validate_X_y(X, y)
@@ -131,21 +101,8 @@ class DecisionTreeClassifier:
         """
         Incrementally update the tree with a new chunk.
 
-        This implementation appends the new chunk to previously seen data
-        and rebuilds the tree. This keeps the API streaming-compatible and
-        simple for the assignment.
-
-        Parameters
-        ----------
-        X_chunk : np.ndarray
-            Feature chunk with shape (n_samples, n_features).
-
-        y_chunk : np.ndarray
-            Target chunk with shape (n_samples,).
-
-        Returns
-        -------
-        self : DecisionTreeClassifier
+       
+       
         """
 
         X_chunk, y_chunk = self._validate_X_y(X_chunk, y_chunk)
@@ -171,15 +128,7 @@ class DecisionTreeClassifier:
         """
         Predict class labels.
 
-        Parameters
-        ----------
-        X : np.ndarray
-            Feature matrix with shape (n_samples, n_features).
-
-        Returns
-        -------
-        y_pred : np.ndarray
-            Predicted labels with shape (n_samples,).
+      
         """
 
         self._check_fitted()
@@ -360,8 +309,8 @@ class DecisionTreeClassifier:
         """
         Return majority class with deterministic tie resolution.
 
-        If there is a tie, np.unique returns sorted labels, so np.argmax
-        chooses the smallest sorted label among tied classes.
+        If there is a tie, np.unique returns sorted labels, so np.argmax will
+        choose the smallest sorted label among tied classes.
         """
 
         labels, counts = np.unique(y, return_counts=True)

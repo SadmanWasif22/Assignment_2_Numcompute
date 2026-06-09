@@ -9,10 +9,10 @@ I did not use pandas and scikit-learn in this module. I have used plain python a
 
 
 Main features of this module are given below:
-- loading CSV files
-- spliting data into train/test sets
-- spliting arrays into chunks for streaming learning
-- validating input shapes
+1. loading CSV files
+2.spliting data into train/test sets
+3. spliting arrays into chunks for streaming learning
+4. validating input shapes
 These works were done here. 
 """
 
@@ -32,38 +32,13 @@ def load_csv(
     dtype: type = float,
 ) -> Tuple[np.ndarray, np.ndarray]:
     """
-    Load a CSV file using only Python csv and NumPy.
+    Loading a CSV file using only Python csv and NumPy here
 
-    Parameters
-    ----------
-    file_path : str
-        Path to the CSV file.
+    
+  
 
-    target_column : int, default=-1
-        Index of the target column. Default is the last column.
 
-    has_header : bool, default=True
-        Whether the CSV file has a header row.
-
-    delimiter : str, default=","
-        CSV delimiter.
-
-    dtype : type, default=float
-        Data type used for converting values.
-
-    Returns
-    -------
-    X : np.ndarray
-        Feature matrix with shape (n_samples, n_features).
-
-    y : np.ndarray
-        Target array with shape (n_samples,).
-
-    Raises
-    ------
-    ValueError
-        If the file is empty, rows have inconsistent lengths,
-        or target_column is invalid.
+    
     """
 
     rows = []
@@ -134,29 +109,10 @@ def train_test_split(
     random_state: Optional[int] = None,
 ) -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
     """
-    Split arrays into training and testing sets.
+    spliting arrays into training and testing sets.
 
-    Parameters
-    ----------
-    X : np.ndarray
-        Feature matrix with shape (n_samples, n_features).
+    
 
-    y : np.ndarray
-        Target array with shape (n_samples,).
-
-    test_size : float, default=0.2
-        Proportion of samples used for testing.
-        Must be between 0 and 1.
-
-    shuffle : bool, default=True
-        Whether to shuffle before splitting.
-
-    random_state : int or None, default=None
-        Random seed for reproducibility.
-
-    Returns
-    -------
-    X_train, X_test, y_train, y_test : tuple of np.ndarray
     """
 
     X, y = _validate_X_y(X, y)
@@ -188,35 +144,16 @@ def make_chunks(
     chunk_size: int = 32,
 ) -> Generator:
     """
-    Split data into chunks to simulate a streaming learning scenario.
+    Spliting data into chunks to simulate a streaming learning scenario.
 
-    Parameters
-    ----------
-    X : np.ndarray
-        Feature matrix with shape (n_samples, n_features).
-
-    y : np.ndarray or None, default=None
-        Target array with shape (n_samples,).
-        If None, only X chunks are returned.
-
-    chunk_size : int, default=32
-        Number of samples per chunk.
-
-    Yields
-    ------
-    If y is provided:
-        Tuple[np.ndarray, np.ndarray]
-        X_chunk, y_chunk
-
-    If y is None:
-        np.ndarray
-        X_chunk
+   
+    
     """
 
     X = _validate_X(X)
 
     if chunk_size <= 0:
-        raise ValueError("chunk_size must be a positive integer.")
+        raise ValueError("chunk_size should be a positive integer.")
 
     if y is not None:
         X, y = _validate_X_y(X, y)
@@ -240,26 +177,10 @@ def save_csv(
     delimiter: str = ",",
 ) -> None:
     """
-    Save NumPy arrays to a CSV file.
+    Saving NumPy arrays to a CSV file here.
 
-    This is useful for creating a small demo dataset without pandas.
+   
 
-    Parameters
-    ----------
-    file_path : str
-        Output CSV path.
-
-    X : np.ndarray
-        Feature matrix with shape (n_samples, n_features).
-
-    y : np.ndarray or None, default=None
-        Optional target array with shape (n_samples,).
-
-    header : list[str] or None, default=None
-        Optional column names.
-
-    delimiter : str, default=","
-        CSV delimiter.
     """
 
     X = _validate_X(X)
@@ -286,17 +207,9 @@ def save_csv(
 
 def _validate_X(X: np.ndarray) -> np.ndarray:
     """
-    Validate feature matrix X.
+    Validating feature matrix X.
 
-    Parameters
-    ----------
-    X : np.ndarray
-        Feature matrix.
-
-    Returns
-    -------
-    X : np.ndarray
-        Validated 2D float array.
+    
     """
 
     X = np.asarray(X, dtype=float)
@@ -317,17 +230,9 @@ def _validate_X(X: np.ndarray) -> np.ndarray:
 
 def _validate_y(y: np.ndarray) -> np.ndarray:
     """
-    Validate target array y.
+   I am Validating target array y.
 
-    Parameters
-    ----------
-    y : np.ndarray
-        Target values.
-
-    Returns
-    -------
-    y : np.ndarray
-        Validated 1D array.
+   
     """
 
     y = np.asarray(y)
@@ -343,20 +248,9 @@ def _validate_y(y: np.ndarray) -> np.ndarray:
 
 def _validate_X_y(X: np.ndarray, y: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
     """
-    Validate X and y together.
+    Validating X and y together.
 
-    Parameters
-    ----------
-    X : np.ndarray
-        Feature matrix.
-
-    y : np.ndarray
-        Target array.
-
-    Returns
-    -------
-    X, y : tuple of np.ndarray
-        Validated X and y.
+  
     """
 
     X = _validate_X(X)
