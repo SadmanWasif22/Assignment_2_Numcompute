@@ -73,7 +73,7 @@ class Accuracy:
 
     def result(self) -> float:
         """
-        Return cumulative accuracy.
+        Returns cumulative accuracy.
         """
 
         if self.total_ == 0:

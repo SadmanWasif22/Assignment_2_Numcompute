@@ -8,7 +8,7 @@ This module is being used for managing chunk-wise learning, prediction, metric u
 and simple logging for streaming machine learning experiments.
 
 
- Python standard library and Numpy were used here.
+ Python standard library and Numpy were used here
 
 
 
@@ -25,39 +25,15 @@ import numpy as np
 
 class StreamTrainer:
     """
-    Manage chunk-wise training, scoring, logging, and metric tracking.
+    Managing chunk-wise training, scoring, logging, and metric tracking here.
 
-    Parameters
-    ----------
-    pipeline : object
-        A model or pipeline that supports:
-        - partial_fit(X, y)
-        - predict(X)
+    
 
-    metrics : dict or None, default=None
-        Dictionary of metric objects.
+        
 
-        Each metric object should support:
-        - update(y_true, y_pred)
-        - result()
-        - reset()
-
-        Example:
-        {
-            "accuracy": Accuracy(),
-            "f1": F1Score()
-        }
-
-    name : str, default="stream_model"
-        Name used in logs.
-
-    log_memory : bool, default=True
-        Whether to estimate memory usage of X and y chunks.
-
-    Notes
-    -----
-    This class is designed for streaming learning. It trains one chunk
-    at a time and stores metric values after each chunk.
+    Notes:
+    I have designed this for streaming learning. It trains one chunk
+    at a time. It stores metric values after each chunk.
     """
 
     def __init__(
@@ -95,20 +71,9 @@ class StreamTrainer:
 
     def fit_chunk(self, X_chunk: np.ndarray, y_chunk: np.ndarray) -> Dict[str, Any]:
         """
-        Train the pipeline on one data chunk.
+        Training the pipeline on one data chunk.
 
-        Parameters
-        ----------
-        X_chunk : np.ndarray
-            Feature chunk with shape (n_samples, n_features).
-
-        y_chunk : np.ndarray
-            Target chunk with shape (n_samples,).
-
-        Returns
-        -------
-        log : dict
-            Log information for the processed chunk.
+        
         """
 
         X_chunk, y_chunk = self._validate_X_y(X_chunk, y_chunk)
@@ -139,20 +104,10 @@ class StreamTrainer:
 
     def score_chunk(self, X_chunk: np.ndarray, y_chunk: np.ndarray) -> Dict[str, float]:
         """
-        Predict and update metrics for one data chunk.
+        Going to predict and update metrics for one data chunk.
 
-        Parameters
-        ----------
-        X_chunk : np.ndarray
-            Feature chunk with shape (n_samples, n_features).
-
-        y_chunk : np.ndarray
-            Target chunk with shape (n_samples,).
-
-        Returns
-        -------
-        scores : dict
-            Current metric results after updating with this chunk.
+        
+        
         """
 
         X_chunk, y_chunk = self._validate_X_y(X_chunk, y_chunk)
@@ -197,24 +152,9 @@ class StreamTrainer:
         score_before_fit: bool = False,
     ) -> Dict[str, Any]:
         """
-        Train and score one chunk.
+        Training and scoring one chunk.
 
-        Parameters
-        ----------
-        X_chunk : np.ndarray
-            Feature chunk with shape (n_samples, n_features).
 
-        y_chunk : np.ndarray
-            Target chunk with shape (n_samples,).
-
-        score_before_fit : bool, default=False
-            If True, predict first, update metrics, then train.
-            If False, train first, then predict and update metrics.
-
-        Returns
-        -------
-        combined_log : dict
-            Log dictionary containing training and metric information.
         """
 
         X_chunk, y_chunk = self._validate_X_y(X_chunk, y_chunk)
@@ -237,20 +177,9 @@ class StreamTrainer:
         score_before_fit: bool = False,
     ) -> List[Dict[str, Any]]:
         """
-        Train over many chunks from a stream.
+        Training over many chunks from a stream here.
 
-        Parameters
-        ----------
-        stream : iterable
-            Iterable producing (X_chunk, y_chunk).
-
-        score_before_fit : bool, default=False
-            Whether to score before training each chunk.
-
-        Returns
-        -------
-        logs : list of dict
-            Logs for all processed chunks.
+        
         """
 
         for X_chunk, y_chunk in stream:
@@ -264,17 +193,9 @@ class StreamTrainer:
 
     def predict_chunk(self, X_chunk: np.ndarray) -> np.ndarray:
         """
-        Predict labels for one chunk.
+        Predicting labels for one chunk.
 
-        Parameters
-        ----------
-        X_chunk : np.ndarray
-            Feature chunk with shape (n_samples, n_features).
-
-        Returns
-        -------
-        y_pred : np.ndarray
-            Predictions with shape (n_samples,).
+        
         """
 
         X_chunk = self._validate_X(X_chunk)
@@ -283,30 +204,17 @@ class StreamTrainer:
 
     def get_logs(self) -> List[Dict[str, Any]]:
         """
-        Return training logs.
+        Returns training logs.
 
-        Returns
-        -------
-        logs : list of dict
-            One dictionary per processed chunk.
         """
 
         return list(self.logs)
 
     def get_metric_history(self, metric_name: Optional[str] = None):
         """
-        Return metric history.
+        Returns metric history.
 
-        Parameters
-        ----------
-        metric_name : str or None, default=None
-            If provided, return only that metric's history.
-            If None, return all metric histories.
-
-        Returns
-        -------
-        list or dict
-            Metric history values.
+      
         """
 
         if metric_name is None:
@@ -339,10 +247,7 @@ class StreamTrainer:
         """
         Return a simple summary of the streaming run.
 
-        Returns
-        -------
-        summary : dict
-            Summary of processed chunks and latest metric values.
+        
         """
 
         latest_metrics = {}
@@ -377,18 +282,14 @@ class StreamTrainer:
         """
         Estimate memory footprint of one chunk.
 
-        Parameters
-        ----------
+        Parameters:
+        
         X : np.ndarray
             Feature chunk.
 
         y : np.ndarray or None
             Target chunk.
 
-        Returns
-        -------
-        memory_bytes : int
-            Approximate memory usage in bytes.
         """
 
         memory = sys.getsizeof(X) + X.nbytes
@@ -401,9 +302,9 @@ class StreamTrainer:
     @staticmethod
     def _validate_X(X: np.ndarray) -> np.ndarray:
         """
-        Validate feature matrix.
+        Validating feature matrix.
 
-        X must be 2D:
+        X should be 2D:
         (n_samples, n_features)
         """
 
@@ -425,10 +326,9 @@ class StreamTrainer:
     @staticmethod
     def _validate_y(y: np.ndarray) -> np.ndarray:
         """
-        Validate target vector.
+        Validating target vector.
 
-        y must be 1D:
-        (n_samples,)
+      
         """
 
         y = np.asarray(y)

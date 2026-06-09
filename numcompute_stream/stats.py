@@ -8,12 +8,12 @@ Allowed libraries:
 - NumPy
 
 This module supports chunk-wise updates for:
-- mean
-- variance
-- standard deviation
-- min / max
-- approximate quantiles
-- histograms
+ mean
+ variance
+standard deviation
+ min / max
+approximate quantiles
+ histograms
 """
 
 from __future__ import annotations
@@ -155,7 +155,7 @@ class StreamingStats:
 
     def mean(self) -> np.ndarray:
         """
-        Return running mean for each feature.
+        Returns running mean for each feature.
         """
 
         self._check_fitted()

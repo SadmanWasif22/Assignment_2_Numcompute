@@ -374,7 +374,7 @@ class DecisionTreeClassifier:
     @staticmethod
     def _validate_X(X: np.ndarray) -> np.ndarray:
         """
-        Validate feature matrix.
+        Validates feature matrix.
         """
 
         X = np.asarray(X, dtype=float)

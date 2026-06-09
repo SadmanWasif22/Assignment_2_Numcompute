@@ -29,22 +29,7 @@ class Pipeline:
     """
     Streaming machine learning pipeline.
 
-    Parameters
-    ----------
-    steps : list of tuple
-        List of (name, object) pairs.
-
-        Example:
-        Pipeline([
-            ("imputer", SimpleImputer()),
-            ("scaler", StandardScaler()),
-            ("model", DecisionTreeClassifier())
-        ])
-
-    Notes
-    -----
-    All steps except the last are treated as transformers.
-    The last step is treated as the model.
+   
     """
 
     def __init__(self, steps: List[Tuple[str, Any]]) -> None:
@@ -61,11 +46,7 @@ class Pipeline:
         """
         Here, Incrementally fit transformers and model using one chunk.
 
-        Parameters are: X : np.ndarray
-            Feature chunk with shape (n_samples, n_features).
-
-         y : np.ndarray
-            Target chunk with shape (n_samples,).
+        
 
         
        
@@ -145,15 +126,6 @@ class Pipeline:
         """
         Transform X through preprocessing steps and predict using final model.
 
-        Parameters
-        ----------
-        X : np.ndarray
-            Feature matrix with shape (n_samples, n_features).
-
-        Returns
-        -------
-        y_pred : np.ndarray
-            Predictions with shape (n_samples,).
         """
 
         X = self._validate_X(X)

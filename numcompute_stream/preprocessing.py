@@ -122,7 +122,7 @@ class SimpleImputer:
 
     def fit(self, X: np.ndarray) -> "SimpleImputer":
         """
-        Fit imputer from scratch.
+        Fits imputer from scratch.
         """
 
         self.reset()
